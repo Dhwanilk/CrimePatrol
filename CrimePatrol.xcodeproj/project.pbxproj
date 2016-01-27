@@ -87,7 +87,6 @@
 				931B015A1C597C0F004E9000 /* ViewController.m */,
 				931B015C1C597C0F004E9000 /* Main.storyboard */,
 				931B015F1C597C0F004E9000 /* Assets.xcassets */,
-				931B01611C597C0F004E9000 /* LaunchScreen.storyboard */,
 				931B01641C597C0F004E9000 /* Info.plist */,
 				931B01531C597C0F004E9000 /* Supporting Files */,
 			);
@@ -97,6 +96,7 @@
 		931B01531C597C0F004E9000 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				931B01611C597C0F004E9000 /* LaunchScreen.storyboard */,
 				931B01541C597C0F004E9000 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -155,6 +155,7 @@
 		931B01481C597C0F004E9000 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CP;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Dhwanil Karwa";
 				TargetAttributes = {
