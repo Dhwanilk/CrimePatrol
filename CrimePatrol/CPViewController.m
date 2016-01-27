@@ -7,8 +7,11 @@
 //
 
 #import "CPViewController.h"
+#import "CPCrimeListDataManager.h"
 
-@interface CPViewController ()
+@interface CPViewController () <CPDataManagerDelegate>
+
+@property (nonatomic, strong) CPCrimeListDataManager *crimeListDataManager;
 
 @end
 
@@ -17,11 +20,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.crimeListDataManager loadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Delegate Methods
+
+- (void)refreshView {
+    
+    NSLog(@"Refresh");
+}
+
+#pragma mark - Lazy Instantiation
+
+- (CPCrimeListDataManager *)crimeListDataManager {
+    
+    if (!_crimeListDataManager) {
+        
+        _crimeListDataManager = [[CPCrimeListDataManager alloc] init];
+        _crimeListDataManager.delegate = self;
+    }
+    
+    return _crimeListDataManager;
+}
+
 
 @end

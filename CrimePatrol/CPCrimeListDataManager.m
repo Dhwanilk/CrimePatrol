@@ -8,6 +8,12 @@
 
 #import "CPCrimeListDataManager.h"
 
+@interface CPCrimeListDataManager()
+
+@property (nonatomic, strong) NSURLSession *sharedSession;
+
+@end
+
 @implementation CPCrimeListDataManager
 
 - (instancetype)init {
@@ -17,6 +23,8 @@
         _offset = 1;
         _lastFetchedIndex = 0;
         
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _sharedSession = [NSURLSession sessionWithConfiguration:configuration];
     }
     
     
@@ -24,6 +32,8 @@
 }
 
 - (void)loadData {
+    
+    NSLog(@"Perform webservice call");
     
 }
 
