@@ -8,6 +8,18 @@
 
 #import "CPCrimeListDataManager.h"
 
+static NSString* const kBaseURLString = @"https://data.sfgov.org/resource/cuks-n6tp.json?";
+
+static NSString* const kAppTokenKey = @"$$app_token";
+static NSString* const kAppTokenValue = @"b4KsWInZBzXo1X7m69nPOBDX3";
+
+static NSString* const kWhere = @"where";
+static NSString* const kDateRange = @"date between '2015-12-27T12:00:00' and '2016-01-27T14:00:00'";
+
+static NSString* const kOffset = @"$offset";
+static NSString* const kLimit = @"$limit";
+
+
 @interface CPCrimeListDataManager()
 
 @property (nonatomic, strong) NSURLSession *sharedSession;
@@ -31,10 +43,26 @@
     return  self;
 }
 
+- (NSString *)getBaseURLWithAppToken {
+    return [NSString stringWithFormat:@"%@%@=%@", kBaseURLString, kAppTokenKey, kAppTokenValue];
+}
+
 - (void)loadData {
+    //Sample URL
+    //https://data.sfgov.org/resource/cuks-n6tp.json?$$app_token=b4KsWInZBzXo1X7m69nPOBDX3&$where=date between '2015-12-27T12:00:00' and '2016-01-27T14:00:00'&$offset=0&$limit=20"
     
-    NSLog(@"Perform webservice call");
     
+    
+    NSString *baseURL = [self getBaseURLWithAppToken];
+    [baseURL stringByAppendingFormat:@"&%@=%@&%@=%d&%@=%d",kWhere, kDateRange, kOffset, 0, kLimit, 20];
+    
+    NSURLSessionDataTask *dataTask = [self.sharedSession dataTaskWithURL:[NSURL URLWithString:baseURL]
+                                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"JSON-----\n%@", json);
+    }];
+    
+    [dataTask resume];
 }
 
 - (NSInteger)numberOfItems {

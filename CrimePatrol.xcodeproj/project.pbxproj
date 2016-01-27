@@ -87,6 +87,7 @@
 			children = (
 				931B01561C597C0F004E9000 /* AppDelegate.h */,
 				931B01571C597C0F004E9000 /* AppDelegate.m */,
+				931B017F1C5989CD004E9000 /* Utils */,
 				931B017A1C59846B004E9000 /* Data Manager */,
 				931B01781C597E3D004E9000 /* ViewController */,
 				931B015C1C597C0F004E9000 /* Main.storyboard */,
@@ -132,6 +133,13 @@
 				931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */,
 			);
 			name = "Data Manager";
+			sourceTree = "<group>";
+		};
+		931B017F1C5989CD004E9000 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
