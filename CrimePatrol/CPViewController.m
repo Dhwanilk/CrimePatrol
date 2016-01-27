@@ -6,13 +6,13 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CPViewController.h"
 
-@interface ViewController ()
+@interface CPViewController ()
 
 @end
 
-@implementation ViewController
+@implementation CPViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
