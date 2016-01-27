@@ -14,6 +14,7 @@
 		931B01601C597C0F004E9000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931B015F1C597C0F004E9000 /* Assets.xcassets */; };
 		931B01631C597C0F004E9000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931B01611C597C0F004E9000 /* LaunchScreen.storyboard */; };
 		931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B016D1C597C10004E9000 /* CrimePatrolTests.m */; };
+		931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,9 @@
 		931B01691C597C10004E9000 /* CrimePatrolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrimePatrolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		931B016D1C597C10004E9000 /* CrimePatrolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrimePatrolTests.m; sourceTree = "<group>"; };
 		931B016F1C597C10004E9000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		931B017B1C5984B7004E9000 /* CPCrimeListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeListDataManager.h; sourceTree = "<group>"; };
+		931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeListDataManager.m; sourceTree = "<group>"; };
+		931B017E1C598504004E9000 /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,9 @@
 		931B017A1C59846B004E9000 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				931B017E1C598504004E9000 /* CPDataManagerDelegate.h */,
+				931B017B1C5984B7004E9000 /* CPCrimeListDataManager.h */,
+				931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */,
 			);
 			name = "Data Manager";
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 				931B015B1C597C0F004E9000 /* CPViewController.m in Sources */,
 				931B01581C597C0F004E9000 /* AppDelegate.m in Sources */,
 				931B01551C597C0F004E9000 /* main.m in Sources */,
+				931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
