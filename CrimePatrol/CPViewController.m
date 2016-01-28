@@ -8,6 +8,7 @@
 
 #import "CPViewController.h"
 #import "CPCrimeListDataManager.h"
+#import <MapKit/MapKit.h>
 
 @interface CPViewController () <CPDataManagerDelegate>
 
@@ -16,6 +17,7 @@
 @end
 
 @implementation CPViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +28,7 @@
 
 - (IBAction)loadMore:(id)sender {
     
+    [self.crimeListDataManager loadData];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,7 @@
 
 #import "CPCrimeListDataManager.h"
 #import "CPCrimeInfo.h"
+#import "UIColor+CPColorUtils.h"
 
 static NSString* const kBaseURLString = @"https://data.sfgov.org/resource/cuks-n6tp.json?";
 
@@ -26,6 +27,9 @@ static NSInteger const kLimitCount = 20;
 
 @property (nonatomic, strong) NSURLSession *sharedSession;
 @property (nonatomic, strong) NSMutableArray *arrayCrimeData;
+@property (nonatomic, strong) NSMutableDictionary *dictDistrict;
+
+@property (nonatomic, strong) NSMutableDictionary *dictColorMap;
 
 @end
 
@@ -60,6 +64,7 @@ static NSInteger const kLimitCount = 20;
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                            
                                                            if (!error) {
+                                                               NSLog(@"Loading Data from %ld to %ld", self.offset, self.offset + kLimitCount);
                                                                self.offset += kLimitCount;
                                                                NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                                                [self parseJSON:jsonArray];
@@ -81,9 +86,10 @@ static NSInteger const kLimitCount = 20;
     }
     
     NSLog(@"Items:%ld", [self.arrayCrimeData count]);
+    
+    [self generateDistrictDictionary];
+    [self sortAndPrintCrimeCountByDistrict];
 }
-
-
 
 - (NSInteger)numberOfItems {
     return 0;
@@ -113,11 +119,103 @@ static NSInteger const kLimitCount = 20;
     return  _arrayCrimeData;
 }
 
+- (NSMutableDictionary *)dictDistrict {
+    if (!_dictDistrict) {
+        _dictDistrict = [NSMutableDictionary new];
+    }
+    return  _dictDistrict;
+}
+
+- (NSMutableDictionary *)dictColorMap {
+    if (!_dictColorMap) {
+        _dictColorMap = [NSMutableDictionary new];
+    }
+    
+    return _dictColorMap;
+}
+
+
 #pragma mark - Private Methods
 
 - (NSString *)getBaseURLWithAppToken {
     return [NSString stringWithFormat:@"%@%@=%@", kBaseURLString, kAppTokenKey, kAppTokenValue];
 }
+
+- (void)generateDistrictDictionary {
+    
+    [self.dictDistrict removeAllObjects];
+    
+    NSMutableDictionary *dictDistrictCount = [NSMutableDictionary new];
+    
+    for (CPCrimeInfo *info in self.arrayCrimeData) {
+        
+        if ([self.dictDistrict objectForKey:info.pddistrict]) {
+            
+            NSMutableArray *arr = self.dictDistrict[info.pddistrict];
+            [arr addObject:info];
+            self.dictDistrict[info.pddistrict] = arr;
+            
+            NSNumber *number = dictDistrictCount[info.pddistrict];
+            dictDistrictCount[info.pddistrict] =  @([number intValue] + 1);
+        }
+        else {
+            NSMutableArray *arr = [NSMutableArray new];
+            [arr addObject:info];
+            self.dictDistrict[info.pddistrict] = arr;
+            dictDistrictCount[info.pddistrict] = @1;
+        }
+    }
+    
+    [self generateColorMapUsingDictionary:dictDistrictCount];
+}
+
+- (void) generateColorMapUsingDictionary:(NSDictionary *)dict {
+
+    
+    NSArray *arrSortedKeys = [dict keysSortedByValueUsingComparator: ^(NSNumber *obj1, NSNumber *obj2) {
+        return [obj2 compare:obj1];
+    }];
+    
+    for (NSInteger i = 0; i < arrSortedKeys.count; ++i) {
+        switch (i) {
+            case 0:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xFF0000];
+                break;
+            case 1:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xEB3600];
+                break;
+            case 2:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xe54800];
+                break;
+            case 3:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xd86d00];
+                break;
+            case 4:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xd27f00];
+                break;
+            case 5:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xc5a300];
+                break;
+            case 6:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xb9c800];
+                break;
+            default:
+                self.dictColorMap[arrSortedKeys[i]] = [UIColor colorWithHex:0xa6ff00];
+                break;
+        }
+    }
+}
+
+- (void)sortAndPrintCrimeCountByDistrict {
+    
+    NSArray *allKeys = [self.dictDistrict allKeys];
+    
+    for (NSString *key in allKeys) {
+        NSArray *value = self.dictDistrict[key];
+        NSLog(@"%@:%ld", key, [value count]);
+    }
+}
+
 
 
 
