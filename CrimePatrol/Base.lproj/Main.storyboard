@@ -26,6 +26,9 @@
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SUa-Bw-625">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="0ez-pX-Qil"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPN-cX-mGU">
                                 <rect key="frame" x="7" y="550" width="73" height="30"/>
@@ -52,6 +55,9 @@
                             <constraint firstItem="q5W-i6-a55" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vmc-cv-k3b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="SUa-Bw-625" id="0Go-pL-Ain"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

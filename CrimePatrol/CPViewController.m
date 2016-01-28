@@ -10,9 +10,13 @@
 #import "CPCrimeListDataManager.h"
 #import <MapKit/MapKit.h>
 
-@interface CPViewController () <CPDataManagerDelegate>
+static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.720996, -122.440100};
+static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
+
+@interface CPViewController () <CPDataManagerDelegate, MKMapViewDelegate>
 
 @property (nonatomic, strong) CPCrimeListDataManager *crimeListDataManager;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -24,6 +28,19 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [self.crimeListDataManager loadData];
+    self.mapView.delegate = self;
+
+    [self showDefaultLocation];
+}
+
+- (void)showDefaultLocation {
+    
+    MKCoordinateRegion sfoRegion;
+    
+    sfoRegion.center = kSFOCenterCoordinate;
+    sfoRegion.span = kSFOSpan;
+    
+    [self.mapView setRegion:sfoRegion animated:YES];
 }
 
 - (IBAction)loadMore:(id)sender {
