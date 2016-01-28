@@ -7,7 +7,9 @@
 //
 
 #import "CPCrimeInfo.h"
+#import "CPModelStrings.h"
 
+//Sample Response
 /*
  address = "0 Block of ELLIS ST";
  category = EMBEZZLEMENT;
@@ -35,27 +37,28 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     self = [super init];
+    
     if (self) {
-        _address = dictionary[@"address"];
-        _category = dictionary[@"category"];
-        _date = dictionary[@"date"];
-        _dayOfWeek = dictionary[@"dayofweek"];
-        _crimeDescription = dictionary[@"descript"];
-        _incidntnum = dictionary[@"incidntnum"];
+        _address = dictionary[kAddressKey];
+        _category = dictionary[kCategoryKey];
+        _date = dictionary[kDateKey];
+        _dayOfWeek = dictionary[kDayOfWeekKey];
+        _crimeDescription = dictionary[kDescriptionKey];
+        _incidntnum = dictionary[kIncidentNumberKey];
 
-        _pddistrict = dictionary[@"pddistrict"];;
-        _pdid = dictionary[@"pdid"];
-        _resolution = dictionary[@"resolution"];
-        _time = dictionary[@"time"];
+        _pddistrict = dictionary[kPDDistrictKey];;
+        _pdid = dictionary[kPDIDKey];
+        _resolution = dictionary[kResolutionKey];
+        _time = dictionary[kTimeKey];
         
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setMaximumFractionDigits:6];
         
-        _x = [formatter numberFromString:dictionary[@"x"]];
-        _y = [formatter numberFromString:dictionary[@"y"]];
+        _x = [formatter numberFromString:dictionary[kXCoordKey]];
+        _y = [formatter numberFromString:dictionary[kYCoordKey]];
         
-        NSArray *arrCoordinate = dictionary[@"location"][@"coordinates"];
+        NSArray *arrCoordinate = dictionary[kLocationKey][kCoordinatesKey];
         
         double longitude = [arrCoordinate[0] doubleValue];
         double latitude = [arrCoordinate[1] doubleValue];

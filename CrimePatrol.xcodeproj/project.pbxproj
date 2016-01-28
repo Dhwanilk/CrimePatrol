@@ -16,6 +16,7 @@
 		931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B016D1C597C10004E9000 /* CrimePatrolTests.m */; };
 		931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */; };
 		931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01821C599BB5004E9000 /* CPCrimeInfo.m */; };
+		93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67B51C59CCA80025B282 /* CPModelStrings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		931B017E1C598504004E9000 /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
 		931B01811C599BB5004E9000 /* CPCrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeInfo.h; sourceTree = "<group>"; };
 		931B01821C599BB5004E9000 /* CPCrimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfo.m; sourceTree = "<group>"; };
+		93FE67B41C59CCA80025B282 /* CPModelStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelStrings.h; sourceTree = "<group>"; };
+		93FE67B51C59CCA80025B282 /* CPModelStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelStrings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,8 @@
 		931B017F1C5989CD004E9000 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				93FE67B41C59CCA80025B282 /* CPModelStrings.h */,
+				93FE67B51C59CCA80025B282 /* CPModelStrings.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				931B01581C597C0F004E9000 /* AppDelegate.m in Sources */,
 				931B01551C597C0F004E9000 /* main.m in Sources */,
 				931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */,
+				93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +457,7 @@
 				931B01741C597C10004E9000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		931B01751C597C10004E9000 /* Build configuration list for PBXNativeTarget "CrimePatrolTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +466,7 @@
 				931B01771C597C10004E9000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,7 +15,7 @@ static NSString* const kAppTokenKey = @"$$app_token";
 static NSString* const kAppTokenValue = @"b4KsWInZBzXo1X7m69nPOBDX3";
 
 static NSString* const kWhere = @"$where";
-static NSString* const kDateRange = @"date between \'2015-12-27T12:00:00\' and \'2016-01-27T14:00:00\'";    //Add configuration options
+static NSString* const kDateRange = @"date between \'2015-12-27T12:00:00\' and \'2016-01-27T14:00:00\'";    //Add configuration options for date selection as per month
 
 static NSString* const kOffset = @"$offset";
 static NSString* const kLimit = @"$limit";

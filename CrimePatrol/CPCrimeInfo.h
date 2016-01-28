@@ -28,25 +28,3 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
-
-/*
- address = "0 Block of ELLIS ST";
- category = EMBEZZLEMENT;
- date = "2015-12-28T00:00:00.000";
- dayofweek = Monday;
- descript = "EMBEZZLED VEHICLE";
- incidntnum = 160041908;
- location =         {
-    coordinates =             (
-        "-122.406853",
-        "37.785672"
-    );
-    type = Point;
- };
- pddistrict = TENDERLOIN;
- pdid = 16004190807052;
- resolution = NONE;
- time = "17:28";
- x = "-122.406852525575";
- y = "37.7856720367472";
-*/
