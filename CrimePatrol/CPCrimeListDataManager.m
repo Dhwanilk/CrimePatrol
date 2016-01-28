@@ -7,6 +7,7 @@
 //
 
 #import "CPCrimeListDataManager.h"
+#import "CPCrimeInfo.h"
 
 static NSString* const kBaseURLString = @"https://data.sfgov.org/resource/cuks-n6tp.json?";
 
@@ -19,10 +20,12 @@ static NSString* const kDateRange = @"date between \'2015-12-27T12:00:00\' and \
 static NSString* const kOffset = @"$offset";
 static NSString* const kLimit = @"$limit";
 
+static NSInteger const kLimitCount = 20;
 
 @interface CPCrimeListDataManager()
 
 @property (nonatomic, strong) NSURLSession *sharedSession;
+@property (nonatomic, strong) NSMutableArray *arrayCrimeData;
 
 @end
 
@@ -32,7 +35,7 @@ static NSString* const kLimit = @"$limit";
     
     self = [super init];
     if (self) {
-        _offset = 1;
+        _offset = 0;
         _lastFetchedIndex = 0;
         
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -45,11 +48,10 @@ static NSString* const kLimit = @"$limit";
 
 - (void)loadData {
     //Sample URL
-    
     //https://data.sfgov.org/resource/cuks-n6tp.json?$$app_token=b4KsWInZBzXo1X7m69nPOBDX3&$where=date between '2015-12-27T12:00:00' and '2016-01-27T14:00:00'&$offset=0&$limit=20
     
     NSString *baseURL = [self getBaseURLWithAppToken];
-    NSString *dateOffsetURLString = [baseURL stringByAppendingFormat:@"&%@=%@&%@=%d&%@=%d",kWhere, kDateRange, kOffset, 0, kLimit, 20];
+    NSString *dateOffsetURLString = [baseURL stringByAppendingFormat:@"&%@=%@&%@=%ld&%@=%ld",kWhere, kDateRange, kOffset, self.offset, kLimit, kLimitCount];
     
     //Escape string so that the date range works with quotes
     NSString *escapedTitle = [dateOffsetURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -58,8 +60,9 @@ static NSString* const kLimit = @"$limit";
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                            
                                                            if (!error) {
+                                                               self.offset += kLimitCount;
                                                                NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                               NSLog(@"JSON-----\n%ld\n%@", [jsonArray count], jsonArray);
+                                                               [self parseJSON:jsonArray];
                                                                
                                                            } else {
                                                                NSLog(@"Error: %@", [error localizedDescription]);
@@ -68,6 +71,18 @@ static NSString* const kLimit = @"$limit";
     
     [dataTask resume];
 }
+
+- (void)parseJSON:(NSArray *)arrayItems {
+    
+    for (NSDictionary *dict in arrayItems) {
+        
+        CPCrimeInfo *crimeInfo = [[CPCrimeInfo alloc] initWithDictionary:dict];
+        [self.arrayCrimeData addObject:crimeInfo];
+    }
+    
+    NSLog(@"Items:%ld", [self.arrayCrimeData count]);
+}
+
 
 
 - (NSInteger)numberOfItems {
@@ -83,8 +98,19 @@ static NSString* const kLimit = @"$limit";
     });
 }
 
+
 - (BOOL)shouldFetchMoreForIndex:(NSInteger)index {
     return false;
+}
+
+#pragma mark - Lazy Instantiation
+
+- (NSMutableArray *)arrayCrimeData {
+    if (!_arrayCrimeData) {
+        _arrayCrimeData = [NSMutableArray new];
+    }
+    
+    return  _arrayCrimeData;
 }
 
 #pragma mark - Private Methods

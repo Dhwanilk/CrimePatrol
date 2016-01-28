@@ -15,6 +15,7 @@
 		931B01631C597C0F004E9000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931B01611C597C0F004E9000 /* LaunchScreen.storyboard */; };
 		931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B016D1C597C10004E9000 /* CrimePatrolTests.m */; };
 		931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */; };
+		931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01821C599BB5004E9000 /* CPCrimeInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		931B017B1C5984B7004E9000 /* CPCrimeListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeListDataManager.h; sourceTree = "<group>"; };
 		931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeListDataManager.m; sourceTree = "<group>"; };
 		931B017E1C598504004E9000 /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
+		931B01811C599BB5004E9000 /* CPCrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeInfo.h; sourceTree = "<group>"; };
+		931B01821C599BB5004E9000 /* CPCrimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 			children = (
 				931B01561C597C0F004E9000 /* AppDelegate.h */,
 				931B01571C597C0F004E9000 /* AppDelegate.m */,
+				931B01801C599B67004E9000 /* Models */,
 				931B017F1C5989CD004E9000 /* Utils */,
 				931B017A1C59846B004E9000 /* Data Manager */,
 				931B01781C597E3D004E9000 /* ViewController */,
@@ -140,6 +144,15 @@
 			children = (
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		931B01801C599B67004E9000 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				931B01811C599BB5004E9000 /* CPCrimeInfo.h */,
+				931B01821C599BB5004E9000 /* CPCrimeInfo.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */,
 				931B015B1C597C0F004E9000 /* CPViewController.m in Sources */,
 				931B01581C597C0F004E9000 /* AppDelegate.m in Sources */,
 				931B01551C597C0F004E9000 /* main.m in Sources */,
