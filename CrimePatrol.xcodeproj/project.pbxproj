@@ -19,6 +19,7 @@
 		93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67B51C59CCA80025B282 /* CPModelStrings.m */; };
 		93FE67BC1C5A13520025B282 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FE67BB1C5A13520025B282 /* MapKit.framework */; };
 		93FE67BF1C5A290E0025B282 /* UIColor+CPColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */; };
+		93FE67C71C5AB14A0025B282 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		93FE67BB1C5A13520025B282 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		93FE67BD1C5A290E0025B282 /* UIColor+CPColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CPColorUtils.h"; sourceTree = "<group>"; };
 		93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CPColorUtils.m"; sourceTree = "<group>"; };
+		93FE67C51C5AB14A0025B282 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
+		93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 				931B01561C597C0F004E9000 /* AppDelegate.h */,
 				931B01571C597C0F004E9000 /* AppDelegate.m */,
 				931B01801C599B67004E9000 /* Models */,
+				93FE67C41C5AB1330025B282 /* View */,
 				931B017F1C5989CD004E9000 /* Utils */,
 				931B017A1C59846B004E9000 /* Data Manager */,
 				931B01781C597E3D004E9000 /* ViewController */,
@@ -167,6 +171,15 @@
 				931B01821C599BB5004E9000 /* CPCrimeInfo.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		93FE67C41C5AB1330025B282 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				93FE67C51C5AB14A0025B282 /* CPAnnotationView.h */,
+				93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +296,7 @@
 				931B01551C597C0F004E9000 /* main.m in Sources */,
 				93FE67BF1C5A290E0025B282 /* UIColor+CPColorUtils.m in Sources */,
 				931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */,
+				93FE67C71C5AB14A0025B282 /* CPAnnotationView.m in Sources */,
 				93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
