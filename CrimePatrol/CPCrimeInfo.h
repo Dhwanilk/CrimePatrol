@@ -17,7 +17,7 @@
 @property (nonatomic, readonly) NSString *dayOfWeek;
 @property (nonatomic, readonly) NSString *crimeDescription;
 @property (nonatomic, readonly) NSString *incidntnum;
-@property (nonatomic, readonly) CLLocation *coordinate;
+@property (nonatomic, readonly) CLLocation *location;
 @property (nonatomic, readonly) NSString *pddistrict;
 @property (nonatomic, readonly) NSString *pdid;
 @property (nonatomic, readonly) NSString *resolution;

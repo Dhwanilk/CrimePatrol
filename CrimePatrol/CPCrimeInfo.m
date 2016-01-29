@@ -63,7 +63,7 @@
         double longitude = [arrCoordinate[0] doubleValue];
         double latitude = [arrCoordinate[1] doubleValue];
         
-        _coordinate = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        _location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     }
     
     return self;

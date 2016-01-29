@@ -16,6 +16,7 @@
 		931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B016D1C597C10004E9000 /* CrimePatrolTests.m */; };
 		931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */; };
 		931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01821C599BB5004E9000 /* CPCrimeInfo.m */; };
+		939C15331C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 939C15321C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m */; };
 		93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67B51C59CCA80025B282 /* CPModelStrings.m */; };
 		93FE67BC1C5A13520025B282 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FE67BB1C5A13520025B282 /* MapKit.framework */; };
 		93FE67BF1C5A290E0025B282 /* UIColor+CPColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */; };
@@ -51,6 +52,7 @@
 		931B017E1C598504004E9000 /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
 		931B01811C599BB5004E9000 /* CPCrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeInfo.h; sourceTree = "<group>"; };
 		931B01821C599BB5004E9000 /* CPCrimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfo.m; sourceTree = "<group>"; };
+		939C15321C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfoModelTests.m; sourceTree = "<group>"; };
 		93FE67B41C59CCA80025B282 /* CPModelStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelStrings.h; sourceTree = "<group>"; };
 		93FE67B51C59CCA80025B282 /* CPModelStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelStrings.m; sourceTree = "<group>"; };
 		93FE67BB1C5A13520025B282 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				931B016D1C597C10004E9000 /* CrimePatrolTests.m */,
+				939C15321C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m */,
 				931B016F1C597C10004E9000 /* Info.plist */,
 			);
 			path = CrimePatrolTests;
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */,
+				939C15331C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

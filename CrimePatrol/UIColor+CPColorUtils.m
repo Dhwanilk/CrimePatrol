@@ -10,16 +10,12 @@
 
 @implementation UIColor (CPColorUtils)
 
-+ (UIColor *)colorWithHex:(uint)hexValue {
-    
-    int red, green, blue, alpha;
-    
-    blue = hexValue & 0x000000FF;
-    green = ((hexValue & 0x0000FF00) >> 8);
-    red = ((hexValue & 0x00FF0000) >> 16);
-    alpha = ((hexValue & 0xFF000000) >> 24);
-    
-    return [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f];
++ (UIColor *)colorWithHex:(uint) hex
+{
+    return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 \
+                           green:((float)((hex & 0x00FF00) >>  8))/255.0 \
+                            blue:((float)((hex & 0x0000FF) >>  0))/255.0 \
+                           alpha:1.0];
 }
 
 @end

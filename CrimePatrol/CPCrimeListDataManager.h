@@ -6,9 +6,11 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
+@import UIKit;
 #import <Foundation/Foundation.h>
-
 #import "CPDataManagerDelegate.h"
+@import MapKit;
+
 
 @interface CPCrimeListDataManager : NSObject
 
@@ -17,9 +19,22 @@
 @property (nonatomic, assign) NSInteger offset;
 @property (nonatomic, assign) NSInteger lastFetchedIndex;
 
-- (void)loadData;
+//Load Data for date range
+- (void)loadDataForLastMonth;
+
 - (NSInteger)numberOfItems;
 - (void)refreshData;
 - (BOOL)shouldFetchMoreForIndex:(NSInteger)index;
+
+- (UIColor *)getPinColorForDistrict:(NSString *)district;
+
+- (NSArray *)getCrimeLocationArray;
+
+- (void)loadDataForMapRect:(MKMapRect)rect;
+
+
+//Clear the data and reset offset & lastFetchedIndex;
+- (void)reset;
+
 
 @end

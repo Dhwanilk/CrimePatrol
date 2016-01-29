@@ -9,9 +9,13 @@
 #import "CPViewController.h"
 #import "CPCrimeListDataManager.h"
 #import <MapKit/MapKit.h>
+#import "CPAnnotationView.h"
+#import "CPCrimeInfo.h"
 
-static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.720996, -122.440100};
+static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.740996, -122.440100};
 static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
+static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
+
 
 @interface CPViewController () <CPDataManagerDelegate, MKMapViewDelegate>
 
@@ -27,7 +31,7 @@ static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self.crimeListDataManager loadData];
+    [self.crimeListDataManager loadDataForLastMonth];
     self.mapView.delegate = self;
 
     [self showDefaultLocation];
@@ -41,16 +45,21 @@ static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
     sfoRegion.span = kSFOSpan;
     
     [self.mapView setRegion:sfoRegion animated:YES];
+    [self.mapView regionThatFits:sfoRegion];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)loadMore:(id)sender {
     
-    [self.crimeListDataManager loadData];
+    [self.crimeListDataManager loadDataForLastMonth];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)clearMap:(id)sender {
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    [self.crimeListDataManager reset];
 }
 
 #pragma mark - Delegate Methods
@@ -58,7 +67,62 @@ static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
 - (void)refreshView {
     
     NSLog(@"Refresh");
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    [self.mapView addAnnotations:[self createAnnotations]];
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(CPAnnotationView *)annotation {
+    
+    MKAnnotationView *annotationView = nil;
+    
+    if (![annotation isKindOfClass:[MKUserLocation class]]) {
+        
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[theMapView dequeueReusableAnnotationViewWithIdentifier:kAnnotationIdentifier];
+        
+        if (!pinView) {
+            
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
+            pinView.pinTintColor = [self.crimeListDataManager getPinColorForDistrict:annotation.district];
+            pinView.canShowCallout = YES;
+            pinView.animatesDrop = YES;
+            
+            pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];;
+            
+        }
+        
+        return pinView;
+    }
+    
+    return annotationView;
+}
+
+#pragma mark - Delegate Helper
+
+- (NSMutableArray *)createAnnotations
+{
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    
+    for (CPCrimeInfo *crimeInfo in [self.crimeListDataManager getCrimeLocationArray]) {
+        
+        CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:crimeInfo.category
+                                                                    coordinate:crimeInfo.location.coordinate
+                                                                      subTitle:crimeInfo.crimeDescription
+                                                                   andDistrict:crimeInfo.pddistrict];
+        [annotations addObject:annotation];
+    }
+    
+    return annotations;
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    
+    //Load Data based on current map position
+//TODO: Fix crazy behaviour on map redraw
+//        [self.crimeListDataManager loadDataForMapRect:mapView.visibleMapRect];
+}
+
 
 #pragma mark - Lazy Instantiation
 
@@ -71,6 +135,13 @@ static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
     }
     
     return _crimeListDataManager;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    [self clearMap:nil];
 }
 
 
