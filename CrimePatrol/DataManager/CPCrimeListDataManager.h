@@ -23,11 +23,11 @@
 
 - (void)refreshData;
 
-- (UIColor *)getPinColorForDistrict:(NSString *)district;
-
 - (NSArray *)getCrimeLocationArray;
 
 - (NSArray *)getDistricts;
+
+- (NSInteger)getIndexForDistrict:(NSString *)district;
 
 - (NSUInteger)numberOfIncidentsInDistrict:(NSString *)district;
 

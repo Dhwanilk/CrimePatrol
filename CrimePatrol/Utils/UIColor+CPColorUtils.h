@@ -6,10 +6,11 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIColor (CPColorUtils)
 
 + (UIColor *)colorWithHex:(uint)hexValue;
++ (UIColor *)getPinColorForIndex:(NSInteger)index;
 
 @end

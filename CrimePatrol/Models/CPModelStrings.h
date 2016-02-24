@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, CPCrimeLevel) {
+    CPCrimeLevel9,
+    CPCrimeLevel8,
+    CPCrimeLevel7,
+    CPCrimeLevel6,
+    CPCrimeLevel5,
+    CPCrimeLevel4,
+    CPCrimeLevel3,
+    CPCrimeLevel2,
+    CPCrimeLevel1,
+    CPCrimeLevel0
+};
+
 extern NSString* const kAddressKey;
 extern NSString* const kCategoryKey;
 extern NSString* const kDateKey;

@@ -12,6 +12,7 @@
 #import "CPAnnotationView.h"
 #import "CPCrimeInfo.h"
 #import "CPDistrict.h"
+#import "UIColor+CPColorUtils.h"
 
 static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.740996, -122.440100};
 static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
@@ -88,14 +89,14 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
         if (!pinView) {
             
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
-            pinView.pinTintColor = [self.crimeListDataManager getPinColorForDistrict:annotation.district];
+            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager getIndexForDistrict:annotation.district]];
             pinView.canShowCallout = YES;
             pinView.animatesDrop = YES;
             
             pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];;
             
         } else {
-            pinView.pinTintColor = [self.crimeListDataManager getPinColorForDistrict:annotation.district];
+            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager getIndexForDistrict:annotation.district]];
         }
         
         return pinView;

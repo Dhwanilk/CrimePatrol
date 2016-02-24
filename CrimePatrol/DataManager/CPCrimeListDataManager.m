@@ -63,6 +63,11 @@
     return [self.arrDistricts copy];
 }
 
+- (NSInteger)getIndexForDistrict:(NSString *)district {
+    NSInteger index = [self.arrDistrictsSortedByCrimeCount indexOfObject:district];
+    return index;
+}
+
 - (void)reset {
     [self.arrayCrimeData removeAllObjects];
     [self.dictDistrict removeAllObjects];
@@ -167,48 +172,6 @@
     self.arrDistrictsSortedByCrimeCount = [dictDistrictCount keysSortedByValueUsingComparator: ^(NSNumber *obj1, NSNumber *obj2) {
         return [obj2 compare:obj1];
     }];
-}
-
-//Get Pin color based on district
-- (UIColor *)getPinColorForDistrict:(NSString *)district {
-    
-    NSInteger index = [self.arrDistrictsSortedByCrimeCount indexOfObject:district];
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] == NSOrderedAscending) {
-     
-        switch (index) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                return [MKPinAnnotationView redPinColor];
-            case 4:
-            case 5:
-            case 6:
-                return [MKPinAnnotationView greenPinColor];
-            default:
-                return [MKPinAnnotationView purplePinColor];
-        }
-        
-    } else {
-        switch (index) {
-            case 0:
-                return [UIColor colorWithHex:0xFF0000];
-            case 1:
-                return [UIColor colorWithHex:0xEB3600];
-            case 2:
-                return [UIColor colorWithHex:0xe54800];
-            case 3:
-                return [UIColor colorWithHex:0xd86d00];
-            case 4:
-                return [UIColor colorWithHex:0xd27f00];
-            case 5:
-                return [UIColor colorWithHex:0xc5a300];
-            case 6:
-                return [UIColor colorWithHex:0xb9c800];
-            default:
-                return [UIColor colorWithHex:0xa6ff00];
-        }
-    }
 }
 
 @end

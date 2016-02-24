@@ -95,9 +95,9 @@
 		93163E451C7E283500D6CF3E /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				93163E481C7E283500D6CF3E /* CPDataManagerDelegate.h */,
 				93163E461C7E283500D6CF3E /* CPCrimeListDataManager.h */,
 				93163E471C7E283500D6CF3E /* CPCrimeListDataManager.m */,
-				93163E481C7E283500D6CF3E /* CPDataManagerDelegate.h */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -105,14 +105,14 @@
 		93163E491C7E283500D6CF3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				93163E4C1C7E283500D6CF3E /* CPModelStrings.h */,
+				93163E4D1C7E283500D6CF3E /* CPModelStrings.m */,
 				93163E601C7E30AC00D6CF3E /* CPCrimePatrolAPI.h */,
 				93163E611C7E30AC00D6CF3E /* CPCrimePatrolAPI.m */,
 				93163E5D1C7E292E00D6CF3E /* CPDistrict.h */,
 				93163E5E1C7E292E00D6CF3E /* CPDistrict.m */,
 				93163E4A1C7E283500D6CF3E /* CPCrimeInfo.h */,
 				93163E4B1C7E283500D6CF3E /* CPCrimeInfo.m */,
-				93163E4C1C7E283500D6CF3E /* CPModelStrings.h */,
-				93163E4D1C7E283500D6CF3E /* CPModelStrings.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
