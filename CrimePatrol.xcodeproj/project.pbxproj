@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		93163E441C7E26E700D6CF3E /* districts.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 93163E431C7E26E700D6CF3E /* districts.geojson */; };
+		93163E571C7E283500D6CF3E /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E471C7E283500D6CF3E /* CPCrimeListDataManager.m */; };
+		93163E581C7E283500D6CF3E /* CPCrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E4B1C7E283500D6CF3E /* CPCrimeInfo.m */; };
+		93163E591C7E283500D6CF3E /* CPModelStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E4D1C7E283500D6CF3E /* CPModelStrings.m */; };
+		93163E5A1C7E283500D6CF3E /* UIColor+CPColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E501C7E283500D6CF3E /* UIColor+CPColorUtils.m */; };
+		93163E5B1C7E283500D6CF3E /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E531C7E283500D6CF3E /* CPAnnotationView.m */; };
+		93163E5C1C7E283500D6CF3E /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E561C7E283500D6CF3E /* CPViewController.m */; };
 		931B01551C597C0F004E9000 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01541C597C0F004E9000 /* main.m */; };
 		931B01581C597C0F004E9000 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01571C597C0F004E9000 /* AppDelegate.m */; };
-		931B015B1C597C0F004E9000 /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B015A1C597C0F004E9000 /* CPViewController.m */; };
 		931B015E1C597C0F004E9000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931B015C1C597C0F004E9000 /* Main.storyboard */; };
 		931B01601C597C0F004E9000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931B015F1C597C0F004E9000 /* Assets.xcassets */; };
 		931B01631C597C0F004E9000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931B01611C597C0F004E9000 /* LaunchScreen.storyboard */; };
 		931B016E1C597C10004E9000 /* CrimePatrolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B016D1C597C10004E9000 /* CrimePatrolTests.m */; };
-		931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */; };
-		931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01821C599BB5004E9000 /* CPCrimeInfo.m */; };
 		939C15331C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 939C15321C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m */; };
-		93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67B51C59CCA80025B282 /* CPModelStrings.m */; };
 		93FE67BC1C5A13520025B282 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FE67BB1C5A13520025B282 /* MapKit.framework */; };
-		93FE67BF1C5A290E0025B282 /* UIColor+CPColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */; };
-		93FE67C71C5AB14A0025B282 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +36,23 @@
 
 /* Begin PBXFileReference section */
 		93163E431C7E26E700D6CF3E /* districts.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = districts.geojson; sourceTree = "<group>"; };
+		93163E461C7E283500D6CF3E /* CPCrimeListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeListDataManager.h; sourceTree = "<group>"; };
+		93163E471C7E283500D6CF3E /* CPCrimeListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeListDataManager.m; sourceTree = "<group>"; };
+		93163E481C7E283500D6CF3E /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
+		93163E4A1C7E283500D6CF3E /* CPCrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeInfo.h; sourceTree = "<group>"; };
+		93163E4B1C7E283500D6CF3E /* CPCrimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfo.m; sourceTree = "<group>"; };
+		93163E4C1C7E283500D6CF3E /* CPModelStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelStrings.h; sourceTree = "<group>"; };
+		93163E4D1C7E283500D6CF3E /* CPModelStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelStrings.m; sourceTree = "<group>"; };
+		93163E4F1C7E283500D6CF3E /* UIColor+CPColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CPColorUtils.h"; sourceTree = "<group>"; };
+		93163E501C7E283500D6CF3E /* UIColor+CPColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CPColorUtils.m"; sourceTree = "<group>"; };
+		93163E521C7E283500D6CF3E /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
+		93163E531C7E283500D6CF3E /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
+		93163E551C7E283500D6CF3E /* CPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPViewController.h; sourceTree = "<group>"; };
+		93163E561C7E283500D6CF3E /* CPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPViewController.m; sourceTree = "<group>"; };
 		931B01501C597C0F004E9000 /* CrimePatrol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimePatrol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		931B01541C597C0F004E9000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		931B01561C597C0F004E9000 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		931B01571C597C0F004E9000 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		931B01591C597C0F004E9000 /* CPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPViewController.h; sourceTree = "<group>"; };
-		931B015A1C597C0F004E9000 /* CPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPViewController.m; sourceTree = "<group>"; };
 		931B015D1C597C0F004E9000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		931B015F1C597C0F004E9000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		931B01621C597C0F004E9000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,19 +60,8 @@
 		931B01691C597C10004E9000 /* CrimePatrolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrimePatrolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		931B016D1C597C10004E9000 /* CrimePatrolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrimePatrolTests.m; sourceTree = "<group>"; };
 		931B016F1C597C10004E9000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		931B017B1C5984B7004E9000 /* CPCrimeListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeListDataManager.h; sourceTree = "<group>"; };
-		931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeListDataManager.m; sourceTree = "<group>"; };
-		931B017E1C598504004E9000 /* CPDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDataManagerDelegate.h; sourceTree = "<group>"; };
-		931B01811C599BB5004E9000 /* CPCrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrimeInfo.h; sourceTree = "<group>"; };
-		931B01821C599BB5004E9000 /* CPCrimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfo.m; sourceTree = "<group>"; };
 		939C15321C5AFCCA00335FA1 /* CPCrimeInfoModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrimeInfoModelTests.m; sourceTree = "<group>"; };
-		93FE67B41C59CCA80025B282 /* CPModelStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelStrings.h; sourceTree = "<group>"; };
-		93FE67B51C59CCA80025B282 /* CPModelStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelStrings.m; sourceTree = "<group>"; };
 		93FE67BB1C5A13520025B282 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		93FE67BD1C5A290E0025B282 /* UIColor+CPColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CPColorUtils.h"; sourceTree = "<group>"; };
-		93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CPColorUtils.m"; sourceTree = "<group>"; };
-		93FE67C51C5AB14A0025B282 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
-		93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +83,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93163E451C7E283500D6CF3E /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				93163E461C7E283500D6CF3E /* CPCrimeListDataManager.h */,
+				93163E471C7E283500D6CF3E /* CPCrimeListDataManager.m */,
+				93163E481C7E283500D6CF3E /* CPDataManagerDelegate.h */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		93163E491C7E283500D6CF3E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				93163E4A1C7E283500D6CF3E /* CPCrimeInfo.h */,
+				93163E4B1C7E283500D6CF3E /* CPCrimeInfo.m */,
+				93163E4C1C7E283500D6CF3E /* CPModelStrings.h */,
+				93163E4D1C7E283500D6CF3E /* CPModelStrings.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		93163E4E1C7E283500D6CF3E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				93163E4F1C7E283500D6CF3E /* UIColor+CPColorUtils.h */,
+				93163E501C7E283500D6CF3E /* UIColor+CPColorUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		93163E511C7E283500D6CF3E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				93163E521C7E283500D6CF3E /* CPAnnotationView.h */,
+				93163E531C7E283500D6CF3E /* CPAnnotationView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		93163E541C7E283500D6CF3E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				93163E551C7E283500D6CF3E /* CPViewController.h */,
+				93163E561C7E283500D6CF3E /* CPViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		931B01471C597C0F004E9000 = {
 			isa = PBXGroup;
 			children = (
@@ -107,11 +155,11 @@
 			children = (
 				931B01561C597C0F004E9000 /* AppDelegate.h */,
 				931B01571C597C0F004E9000 /* AppDelegate.m */,
-				931B01801C599B67004E9000 /* Models */,
-				93FE67C41C5AB1330025B282 /* View */,
-				931B017F1C5989CD004E9000 /* Utils */,
-				931B017A1C59846B004E9000 /* Data Manager */,
-				931B01781C597E3D004E9000 /* ViewController */,
+				93163E451C7E283500D6CF3E /* DataManager */,
+				93163E491C7E283500D6CF3E /* Models */,
+				93163E4E1C7E283500D6CF3E /* Utils */,
+				93163E511C7E283500D6CF3E /* View */,
+				93163E541C7E283500D6CF3E /* ViewController */,
 				931B015C1C597C0F004E9000 /* Main.storyboard */,
 				931B015F1C597C0F004E9000 /* Assets.xcassets */,
 				931B01641C597C0F004E9000 /* Info.plist */,
@@ -138,54 +186,6 @@
 				931B016F1C597C10004E9000 /* Info.plist */,
 			);
 			path = CrimePatrolTests;
-			sourceTree = "<group>";
-		};
-		931B01781C597E3D004E9000 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				931B01591C597C0F004E9000 /* CPViewController.h */,
-				931B015A1C597C0F004E9000 /* CPViewController.m */,
-			);
-			name = ViewController;
-			sourceTree = "<group>";
-		};
-		931B017A1C59846B004E9000 /* Data Manager */ = {
-			isa = PBXGroup;
-			children = (
-				931B017E1C598504004E9000 /* CPDataManagerDelegate.h */,
-				931B017B1C5984B7004E9000 /* CPCrimeListDataManager.h */,
-				931B017C1C5984B7004E9000 /* CPCrimeListDataManager.m */,
-			);
-			name = "Data Manager";
-			sourceTree = "<group>";
-		};
-		931B017F1C5989CD004E9000 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				93FE67B41C59CCA80025B282 /* CPModelStrings.h */,
-				93FE67B51C59CCA80025B282 /* CPModelStrings.m */,
-				93FE67BD1C5A290E0025B282 /* UIColor+CPColorUtils.h */,
-				93FE67BE1C5A290E0025B282 /* UIColor+CPColorUtils.m */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		931B01801C599B67004E9000 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				931B01811C599BB5004E9000 /* CPCrimeInfo.h */,
-				931B01821C599BB5004E9000 /* CPCrimeInfo.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		93FE67C41C5AB1330025B282 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				93FE67C51C5AB14A0025B282 /* CPAnnotationView.h */,
-				93FE67C61C5AB14A0025B282 /* CPAnnotationView.m */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,14 +297,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				931B01831C599BB5004E9000 /* CPCrimeInfo.m in Sources */,
-				931B015B1C597C0F004E9000 /* CPViewController.m in Sources */,
+				93163E5B1C7E283500D6CF3E /* CPAnnotationView.m in Sources */,
 				931B01581C597C0F004E9000 /* AppDelegate.m in Sources */,
 				931B01551C597C0F004E9000 /* main.m in Sources */,
-				93FE67BF1C5A290E0025B282 /* UIColor+CPColorUtils.m in Sources */,
-				931B017D1C5984B7004E9000 /* CPCrimeListDataManager.m in Sources */,
-				93FE67C71C5AB14A0025B282 /* CPAnnotationView.m in Sources */,
-				93FE67B61C59CCA80025B282 /* CPModelStrings.m in Sources */,
+				93163E5A1C7E283500D6CF3E /* UIColor+CPColorUtils.m in Sources */,
+				93163E571C7E283500D6CF3E /* CPCrimeListDataManager.m in Sources */,
+				93163E581C7E283500D6CF3E /* CPCrimeInfo.m in Sources */,
+				93163E591C7E283500D6CF3E /* CPModelStrings.m in Sources */,
+				93163E5C1C7E283500D6CF3E /* CPViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
