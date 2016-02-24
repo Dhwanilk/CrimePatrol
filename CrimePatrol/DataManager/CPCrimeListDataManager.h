@@ -11,12 +11,13 @@
 @import MapKit;
 #import "CPDataManagerDelegate.h"
 
+@class CPNetworkingManager;
+
 @interface CPCrimeListDataManager : NSObject
 
 @property (nonatomic, weak) id<CPDataManagerDelegate> delegate;
 
-@property (nonatomic, assign) NSInteger offset;
-@property (nonatomic, assign) NSInteger lastFetchedIndex;
+- (instancetype)initWithNetworkManager:(CPNetworkingManager *)networkingManager;
 
 //Load Data for date range
 - (void)loadData;

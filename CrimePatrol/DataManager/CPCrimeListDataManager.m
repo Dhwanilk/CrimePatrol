@@ -21,15 +21,26 @@
 
 @property (nonatomic, strong) NSMutableArray *arrDistricts;
 
+@property (nonatomic, strong) CPNetworkingManager *networkingManager;
+
 @end
 
 @implementation CPCrimeListDataManager
 
 #pragma mark - Public Interface
 
+- (instancetype)initWithNetworkManager:(CPNetworkingManager *)networkingManager {
+    self = [super init];
+    if (self) {
+        _networkingManager = networkingManager;
+    }
+    
+    return self;
+}
+
 - (void)loadData {
     
-    [[CPNetworkingManager sharedManager] getCrimesForPastMonthWithCompletionHandler:^(BOOL success, NSURLResponse *response, NSData *data, NSError *error) {
+    [self.networkingManager getCrimesForPastMonthWithCompletionHandler:^(BOOL success, NSURLResponse *response, NSData *data, NSError *error) {
        
         if (success) {
             

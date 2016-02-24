@@ -14,6 +14,7 @@
 #import "CPDistrict.h"
 #import "UIColor+CPColorUtils.h"
 #import "CPAlertManager.h"
+#import "CPNetworkingManager.h"
 
 static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.740996, -122.440100};
 static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
@@ -24,6 +25,7 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 
 @property (nonatomic, strong) CPCrimeListDataManager *crimeListDataManager;
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) CPNetworkingManager *networkingManager;
 
 @end
 
@@ -136,11 +138,20 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
     
     if (!_crimeListDataManager) {
         
-        _crimeListDataManager = [[CPCrimeListDataManager alloc] init];
+        _crimeListDataManager = [[CPCrimeListDataManager alloc] initWithNetworkManager:self.networkingManager];
         _crimeListDataManager.delegate = self;
     }
     
     return _crimeListDataManager;
+}
+
+- (CPNetworkingManager *)networkingManager {
+    
+    if (!_networkingManager) {
+        _networkingManager = [[CPNetworkingManager alloc] init];
+    }
+    
+    return _networkingManager;
 }
 
 - (void)didReceiveMemoryWarning {
