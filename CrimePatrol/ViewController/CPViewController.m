@@ -116,13 +116,6 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
     return annotations;
 }
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    
-    //Load Data based on current map position
-//TODO: Fix crazy behaviour on map redraw
-//        [self.crimeListDataManager loadDataForMapRect:mapView.visibleMapRect];
-}
-
 
 #pragma mark - Lazy Instantiation
 
