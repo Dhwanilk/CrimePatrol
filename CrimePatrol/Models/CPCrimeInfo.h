@@ -25,6 +25,15 @@
 @property (nonatomic, readonly) NSNumber *x;
 @property (nonatomic, readonly) NSNumber *y;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)init NS_UNAVAILABLE;
+
+/*!
+ * @discussion Designated Initializer for CPCrimeInfo
+ * @param dictionary JSON Dictionary of key value pairs
+ * @param numberFormatter A NSNumberFormatter to format the x and y values
+ * @return Returns an instance of CPCrimeInfo with values initialized using dictionary
+ */
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary andNumberFormatter:(NSNumberFormatter *)numberFormatter NS_DESIGNATED_INITIALIZER;
+
 
 @end

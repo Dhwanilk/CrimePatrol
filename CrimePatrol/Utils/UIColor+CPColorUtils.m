@@ -20,7 +20,7 @@
                            alpha:1.0];
 }
 
-+ (UIColor *)getPinColorForIndex:(NSInteger)index {
++ (UIColor *)pinColorForIndex:(NSInteger)index {
     
     if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] == NSOrderedAscending) {
         

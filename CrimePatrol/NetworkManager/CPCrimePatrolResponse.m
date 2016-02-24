@@ -29,15 +29,22 @@
  */
 - (void)parseJSON:(NSArray <NSDictionary *> *)arrayItems {
     
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter.maximumFractionDigits = 6;
+    
     NSMutableArray *mutableDistricts = [[NSMutableArray alloc] init];
     
     for (NSDictionary *dict in arrayItems) {
         
-        CPCrimeInfo *crimeInfo = [[CPCrimeInfo alloc] initWithDictionary:dict];
-        [mutableDistricts addObject: crimeInfo];
+        CPCrimeInfo *crimeInfo = [[CPCrimeInfo alloc] initWithDictionary:dict andNumberFormatter:numberFormatter];
+        
+        if (crimeInfo) {
+            [mutableDistricts addObject:crimeInfo];
+        }
     }
     
-    self.districts = [NSArray arrayWithArray:mutableDistricts];
+    self.crimeInfos = [NSArray arrayWithArray:mutableDistricts];
 }
 
 

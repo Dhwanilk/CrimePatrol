@@ -40,16 +40,21 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = true;
     
+    __weak typeof(self) weakSelf = self;
+    
     [self.networkingManager getCrimesForPastMonthWithCompletionHandler:^(CPCrimePatrolResponse *crimeResponse, NSURLResponse *response, NSError *error) {
         
-        if (crimeResponse.success && [crimeResponse.districts count] > 0) {
-            self.arrayCrimeInfos = [self.arrayCrimeInfos arrayByAddingObjectsFromArray:crimeResponse.districts];
-            [self generateDistrictMap:crimeResponse.districts];
-            [self refreshData];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        if (crimeResponse.success && (crimeResponse.crimeInfos).count > 0) {
+            
+            strongSelf.arrayCrimeInfos = [strongSelf.arrayCrimeInfos arrayByAddingObjectsFromArray:crimeResponse.crimeInfos];
+            [strongSelf generateDistrictMap:crimeResponse.crimeInfos];
+            [strongSelf refreshData];
         }
         else {
             
-            [self handleError:error];
+            [strongSelf handleError:error];
         }
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false;

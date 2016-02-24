@@ -10,7 +10,16 @@
 
 @interface UIColor (CPColorUtils)
 
+/*!
+ * @discussion Category on UIColor to obtain UIColor based on hex color
+ * @param hexValue Hex value of Color e.g. 0xFF0000
+ */
 + (UIColor *)colorWithHex:(uint)hexValue;
-+ (UIColor *)getPinColorForIndex:(NSInteger)index;
+
+/*!
+ * @discussion Category on UIColor to obtain UIColor based on crime level
+ * @param index Index of Crime Level based on CPCrimeLevel enum
+ */
++ (UIColor *)pinColorForIndex:(NSInteger)index;
 
 @end

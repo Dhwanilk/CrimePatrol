@@ -6,9 +6,9 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
+@import MapKit;
 #import "CPViewController.h"
 #import "CPCrimeListDataManager.h"
-@import MapKit;
 #import "CPAnnotationView.h"
 #import "CPCrimeInfo.h"
 #import "CPDistrict.h"
@@ -92,14 +92,14 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
         if (!pinView) {
             
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
-            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
+            pinView.pinTintColor = [UIColor pinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
             pinView.canShowCallout = YES;
             pinView.animatesDrop = YES;
             
             pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];;
             
         } else {
-            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
+            pinView.pinTintColor = [UIColor pinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
         }
         
         return pinView;

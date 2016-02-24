@@ -15,6 +15,12 @@
 @property (nonatomic, readonly) NSString *district;
 @property (nonatomic, readonly) CLLocation *location;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)init NS_UNAVAILABLE;
+/*!
+ * @discussion Designated Initializer for CPDistrict
+ * @param dictionary JSON Dictionary of key value pairs
+ * @return Returns an instance of CPDistrict with values initialized using dictionary
+ */
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 
 @end

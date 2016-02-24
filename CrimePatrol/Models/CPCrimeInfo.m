@@ -34,29 +34,30 @@
 
 @implementation CPCrimeInfo
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary andNumberFormatter:(NSNumberFormatter *)numberFormatter{
     
     self = [super init];
     
     if (self) {
+        
+        if (!dictionary) {
+            return nil;
+        }
+        
         _address = dictionary[kAddressKey];
         _category = dictionary[kCategoryKey];
         _date = dictionary[kDateKey];
         _dayOfWeek = dictionary[kDayOfWeekKey];
         _crimeDescription = dictionary[kDescriptionKey];
         _incidntnum = dictionary[kIncidentNumberKey];
-
-        _pddistrict = dictionary[kPDDistrictKey];;
+        
+        _pddistrict = dictionary[kPDDistrictKey];
         _pdid = dictionary[kPDIDKey];
         _resolution = dictionary[kResolutionKey];
         _time = dictionary[kTimeKey];
         
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [formatter setMaximumFractionDigits:6];
-        
-        _x = [formatter numberFromString:dictionary[kXCoordKey]];
-        _y = [formatter numberFromString:dictionary[kYCoordKey]];
+        _x = [numberFormatter numberFromString:dictionary[kXCoordKey]];
+        _y = [numberFormatter numberFromString:dictionary[kYCoordKey]];
         
         NSArray *arrCoordinate = dictionary[kLocationKey][kCoordinatesKey];
         

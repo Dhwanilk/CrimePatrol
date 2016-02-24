@@ -16,6 +16,16 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *district;
 
--(instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSInteger)subTitle andDistrict:(NSString *)district;
+- (instancetype)init NS_UNAVAILABLE;
+
+/*!
+ * @discussion Designated Initializer for CPAnnotationView
+ * @param title Title for the MKAnnotation
+ * @param coordinate CLLocationCoordinate2D coordinate for MKAnnotation
+ * @param subTitle subtitle for MKAnnotation
+ * @param district new district property for MKAnnotation
+ * return Instance of CPAnnotationView
+ */
+- (instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSInteger)subTitle andDistrict:(NSString *)district NS_DESIGNATED_INITIALIZER;
 
 @end
