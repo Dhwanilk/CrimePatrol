@@ -14,6 +14,7 @@
 		93163E5A1C7E283500D6CF3E /* UIColor+CPColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E501C7E283500D6CF3E /* UIColor+CPColorUtils.m */; };
 		93163E5B1C7E283500D6CF3E /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E531C7E283500D6CF3E /* CPAnnotationView.m */; };
 		93163E5C1C7E283500D6CF3E /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E561C7E283500D6CF3E /* CPViewController.m */; };
+		93163E5F1C7E292E00D6CF3E /* CPDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 93163E5E1C7E292E00D6CF3E /* CPDistrict.m */; };
 		931B01551C597C0F004E9000 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01541C597C0F004E9000 /* main.m */; };
 		931B01581C597C0F004E9000 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01571C597C0F004E9000 /* AppDelegate.m */; };
 		931B015E1C597C0F004E9000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931B015C1C597C0F004E9000 /* Main.storyboard */; };
@@ -49,6 +50,8 @@
 		93163E531C7E283500D6CF3E /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
 		93163E551C7E283500D6CF3E /* CPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPViewController.h; sourceTree = "<group>"; };
 		93163E561C7E283500D6CF3E /* CPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPViewController.m; sourceTree = "<group>"; };
+		93163E5D1C7E292E00D6CF3E /* CPDistrict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDistrict.h; sourceTree = "<group>"; };
+		93163E5E1C7E292E00D6CF3E /* CPDistrict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDistrict.m; sourceTree = "<group>"; };
 		931B01501C597C0F004E9000 /* CrimePatrol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimePatrol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		931B01541C597C0F004E9000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		931B01561C597C0F004E9000 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 		93163E491C7E283500D6CF3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				93163E5D1C7E292E00D6CF3E /* CPDistrict.h */,
+				93163E5E1C7E292E00D6CF3E /* CPDistrict.m */,
 				93163E4A1C7E283500D6CF3E /* CPCrimeInfo.h */,
 				93163E4B1C7E283500D6CF3E /* CPCrimeInfo.m */,
 				93163E4C1C7E283500D6CF3E /* CPModelStrings.h */,
@@ -302,6 +307,7 @@
 				931B01551C597C0F004E9000 /* main.m in Sources */,
 				93163E5A1C7E283500D6CF3E /* UIColor+CPColorUtils.m in Sources */,
 				93163E571C7E283500D6CF3E /* CPCrimeListDataManager.m in Sources */,
+				93163E5F1C7E292E00D6CF3E /* CPDistrict.m in Sources */,
 				93163E581C7E283500D6CF3E /* CPCrimeInfo.m in Sources */,
 				93163E591C7E283500D6CF3E /* CPModelStrings.m in Sources */,
 				93163E5C1C7E283500D6CF3E /* CPViewController.m in Sources */,

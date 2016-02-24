@@ -22,3 +22,8 @@ extern NSString* const kResolutionKey;
 extern NSString* const kTimeKey;
 extern NSString* const kXCoordKey;
 extern NSString* const kYCoordKey;
+
+extern NSString* const kPropertiesKey;
+extern NSString* const kNameKey;
+extern NSString* const kDistrictKey;
+extern NSString* const kGeometryKey;

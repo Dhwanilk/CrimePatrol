@@ -22,3 +22,8 @@ NSString* const kResolutionKey = @"resolution";
 NSString* const kTimeKey = @"time";
 NSString* const kXCoordKey = @"x";
 NSString* const kYCoordKey = @"y";
+
+NSString* const kPropertiesKey = @"properties";
+NSString* const kNameKey = @"name";
+NSString* const kDistrictKey = @"district";
+NSString* const kGeometryKey = @"geometry";
