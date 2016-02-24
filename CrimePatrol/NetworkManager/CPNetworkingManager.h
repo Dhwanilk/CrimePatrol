@@ -7,23 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class CPCrimePatrolResponse;
 
 /*!
- * @typedef APICompletionBlock
- * @brief A Completion Block that contains BOOL success, NSURLResponse, NSData and NSError objects
+ * @typedef CPAPICompletionBlock
+ * @brief A Completion Block that contains CPCrimePatrolResponse, NSURLResponse and NSError objects
  */
-typedef void(^APICompletionBlock)(BOOL success, NSURLResponse *response, NSData *data, NSError* error);
+typedef void(^CPAPICompletionBlock)(CPCrimePatrolResponse *crimeResponse, NSURLResponse *response, NSError* error);
 
 @interface CPNetworkingManager : NSObject
-
-///Singleton to get Shared CPNetworkingManager
-+ (CPNetworkingManager *)sharedManager;
 
 /*!
  * @discussion Used to fetch crimes of last month using completion handler. Calls completion handler using CPCrimePatrolResponse object, NSURLResponse object and NSError
  * @param completionHandler A completion handler
  */
-- (void)getCrimesForPastMonthWithCompletionHandler:(APICompletionBlock)completionHandler;
+- (void)getCrimesForPastMonthWithCompletionHandler:(CPAPICompletionBlock)completionHandler;
 
 @end

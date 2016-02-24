@@ -11,16 +11,14 @@
 #import "UIColor+CPColorUtils.h"
 #import "CPDistrict.h"
 #import "CPNetworkingManager.h"
+#import "CPCrimePatrolResponse.h"
 
 @interface CPCrimeListDataManager()
 
-@property (nonatomic, strong) NSMutableArray *arrayCrimeData;
-@property (nonatomic, strong) NSMutableDictionary *dictDistrict;
-
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray <CPCrimeInfo *> *> *dictDistrict;
+@property (nonatomic, strong) NSMutableArray <CPDistrict *> *arrDistricts;
 @property (nonatomic, strong) NSArray *arrDistrictsSortedByCrimeCount;
-
-@property (nonatomic, strong) NSMutableArray *arrDistricts;
-
+@property (nonatomic, strong) NSArray <CPCrimeInfo *> *arrayCrimeInfos;
 @property (nonatomic, strong) CPNetworkingManager *networkingManager;
 
 @end
@@ -40,19 +38,21 @@
 
 - (void)loadData {
     
-    [self.networkingManager getCrimesForPastMonthWithCompletionHandler:^(BOOL success, NSURLResponse *response, NSData *data, NSError *error) {
-       
-        if (success) {
-            
-            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            [self parseJSON:jsonArray];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = true;
+    
+    [self.networkingManager getCrimesForPastMonthWithCompletionHandler:^(CPCrimePatrolResponse *crimeResponse, NSURLResponse *response, NSError *error) {
+        
+        if (crimeResponse.success && [crimeResponse.districts count] > 0) {
+            self.arrayCrimeInfos = [self.arrayCrimeInfos arrayByAddingObjectsFromArray:crimeResponse.districts];
+            [self generateDistrictMap:crimeResponse.districts];
             [self refreshData];
-        } else {
+        }
+        else {
+            
             [self handleError:error];
         }
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
-        
     }];
 }
 
@@ -65,6 +65,35 @@
     });
 }
 
+- (NSArray <CPDistrict *> *)districts {
+    
+    return self.arrDistricts;
+}
+
+- (void)reset {
+    self.arrayCrimeInfos = nil;
+    self.arrDistrictsSortedByCrimeCount = nil;
+    [self.dictDistrict removeAllObjects];
+}
+
+- (NSInteger)indexForDistrict:(NSString *)district {
+    NSInteger index = [self.arrDistrictsSortedByCrimeCount indexOfObject:district];
+    return index;
+}
+
+- (NSInteger)numberOfIncidentsInDistrict:(NSString *)district {
+    
+    if (self.dictDistrict[district]) {
+        NSArray *individualDistrictArray = self.dictDistrict[district];
+        return individualDistrictArray.count;
+    } else {
+        return  0;
+    }
+}
+
+
+#pragma mark - Private Methods
+
 - (void)refreshData {
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -74,53 +103,72 @@
     });
 }
 
-- (NSArray *)getCrimeLocationArray {
-    return [self.arrayCrimeData copy];
-}
 
-- (NSArray *)getDistricts {
+/*!
+ * @discussion Generates NSDictionary of District Name as Key and Array of CPCrimeInfo as value
+ * @param crimeInfos Array of CPCrimeInfo obtained using CPCrimePatrolResponse
+ */
+- (void)generateDistrictMap:(NSArray <CPCrimeInfo *> *)crimeInfos {
     
-    return [self.arrDistricts copy];
-}
-
-- (NSInteger)getIndexForDistrict:(NSString *)district {
-    NSInteger index = [self.arrDistrictsSortedByCrimeCount indexOfObject:district];
-    return index;
-}
-
-- (void)reset {
-    [self.arrayCrimeData removeAllObjects];
-    [self.dictDistrict removeAllObjects];
-}
-
-- (NSUInteger)numberOfIncidentsInDistrict:(NSString *)district {
-    
-    if (self.dictDistrict[district]) {
-        NSArray *individualDistrictArray = self.dictDistrict[district];
-        return [individualDistrictArray count];
-    } else {
-        return  0;
+    for (CPCrimeInfo *crimeInfo in crimeInfos) {
+        
+        if (crimeInfo) {
+            
+            if ((self.dictDistrict)[crimeInfo.pddistrict]) {
+                
+                NSMutableArray *arr = self.dictDistrict[crimeInfo.pddistrict];
+                [arr addObject:crimeInfo];
+                self.dictDistrict[crimeInfo.pddistrict] = arr;
+                
+            }
+            else {
+                
+                NSMutableArray *arr = [NSMutableArray new];
+                [arr addObject:crimeInfo];
+                self.dictDistrict[crimeInfo.pddistrict] = arr;
+            }
+        }
     }
+    
+    //Sorted district keys based on value
+    self.arrDistrictsSortedByCrimeCount = [self sortedDistricts:self.dictDistrict];
+}
+
+/*!
+ * @discussion Generates sorted array of District names using NSDictionary
+ * @param dictionaryMap Dictionary of type <NSString *, NSMutableArray <CPCrimeInfo *>
+ * @return Sorted array of District Names
+ */
+- (NSArray *)sortedDistricts:(NSDictionary <NSString *, NSMutableArray <CPCrimeInfo *> *> *)dictionaryMap {
+    NSArray *items;
+    
+    items = [dictionaryMap keysSortedByValueUsingComparator: ^(NSArray *obj1,  NSArray *obj2) {
+        
+        if (obj2.count < obj1.count) {
+            return NSOrderedAscending;
+        }
+        
+        if (obj2.count > obj1.count) {
+            return NSOrderedDescending;
+        }
+        
+        return NSOrderedSame;
+    }];
+    
+    return items;
 }
 
 #pragma mark - Lazy Instantiation
 
-- (NSMutableArray *)arrayCrimeData {
-    if (!_arrayCrimeData) {
-        _arrayCrimeData = [NSMutableArray new];
-    }
-    
-    return  _arrayCrimeData;
-}
-
 - (NSMutableDictionary *)dictDistrict {
+    
     if (!_dictDistrict) {
         _dictDistrict = [NSMutableDictionary new];
     }
     return  _dictDistrict;
 }
 
-- (NSMutableArray *)arrDistricts {
+- (NSMutableArray <CPDistrict *> *)arrDistricts {
     
     if (!_arrDistricts) {
         
@@ -129,6 +177,7 @@
         NSString *filepath = [[NSBundle mainBundle] pathForResource:@"districts" ofType:@"geojson"];
         
         if (filepath) {
+            
             NSData* data = [NSData dataWithContentsOfFile:filepath];
             NSError *error;
             NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
@@ -137,61 +186,17 @@
                 NSArray *featureArray = jsonDict[@"features"];
                 for (NSDictionary *dict in featureArray) {
                     CPDistrict *district = [[CPDistrict alloc] initWithDictionary:dict];
-                    [_arrDistricts addObject:district];
+                    
+                    //If valid district object then add to array
+                    if (district) {
+                        [_arrDistricts addObject:district];
+                    }
                 }
             }
         }
     }
     
     return _arrDistricts;
-}
-
-
-#pragma mark - Private Methods
-
-//Parse JSON response
-- (void)parseJSON:(NSArray *)arrayItems {
-    
-    for (NSDictionary *dict in arrayItems) {
-        
-        CPCrimeInfo *crimeInfo = [[CPCrimeInfo alloc] initWithDictionary:dict];
-        [self.arrayCrimeData addObject:crimeInfo];
-    }
-    
-    [self generateDistrictDictionary];
-}
-
-
-//Generate count dictionary for crime data based on districts
-- (void)generateDistrictDictionary {
-    
-    [self.dictDistrict removeAllObjects];
-    
-    NSMutableDictionary *dictDistrictCount = [NSMutableDictionary new];
-    
-    for (CPCrimeInfo *info in self.arrayCrimeData) {
-        
-        if ([self.dictDistrict objectForKey:info.pddistrict]) {
-            
-            NSMutableArray *arr = self.dictDistrict[info.pddistrict];
-            [arr addObject:info];
-            self.dictDistrict[info.pddistrict] = arr;
-            
-            NSNumber *number = dictDistrictCount[info.pddistrict];
-            dictDistrictCount[info.pddistrict] =  @([number intValue] + 1);
-        }
-        else {
-            NSMutableArray *arr = [NSMutableArray new];
-            [arr addObject:info];
-            self.dictDistrict[info.pddistrict] = arr;
-            dictDistrictCount[info.pddistrict] = @1;
-        }
-    }
-    
-    //Sort district keys based on value
-    self.arrDistrictsSortedByCrimeCount = [dictDistrictCount keysSortedByValueUsingComparator: ^(NSNumber *obj1, NSNumber *obj2) {
-        return [obj2 compare:obj1];
-    }];
 }
 
 @end

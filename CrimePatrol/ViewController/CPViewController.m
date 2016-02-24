@@ -92,14 +92,14 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
         if (!pinView) {
             
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
-            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager getIndexForDistrict:annotation.district]];
+            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
             pinView.canShowCallout = YES;
             pinView.animatesDrop = YES;
             
             pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];;
             
         } else {
-            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager getIndexForDistrict:annotation.district]];
+            pinView.pinTintColor = [UIColor getPinColorForIndex:[self.crimeListDataManager indexForDistrict:annotation.district]];
         }
         
         return pinView;
@@ -119,7 +119,7 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (CPDistrict *district in [self.crimeListDataManager getDistricts]) {
+    for (CPDistrict *district in [self.crimeListDataManager districts]) {
         
         CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:district.name
                                                                     coordinate:district.location.coordinate

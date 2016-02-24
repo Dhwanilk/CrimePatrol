@@ -8,7 +8,7 @@
 
 #import "CPNetworkingManager.h"
 #import "CPCrimePatrolAPI.h"
-#import "CPDistrict.h"
+#import "CPCrimePatrolResponse.h"
 
 @interface CPNetworkingManager()
 
@@ -18,17 +18,6 @@
 
 
 @implementation CPNetworkingManager
-
-+ (CPNetworkingManager *)sharedManager {
-    
-    static CPNetworkingManager *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
-
 
 - (instancetype)init {
     
@@ -42,7 +31,7 @@
     return self;
 }
 
-- (void)getCrimesForPastMonthWithCompletionHandler:(APICompletionBlock)completionHandler {
+- (void)getCrimesForPastMonthWithCompletionHandler:(CPAPICompletionBlock)completionHandler {
     
     NSURL *url = [CPCrimePatrolAPI appURLWithMonthFilter];
     
@@ -50,21 +39,28 @@
     
 }
 
-- (void)makeGETAPICall:(NSURL *)url completion:(APICompletionBlock)completionHandler {
+- (void)makeGETAPICall:(NSURL *)url completion:(CPAPICompletionBlock)completionHandler {
     
     [self dataTaskWithURL:url method:@"GET" andCompletionHandler:completionHandler];
 }
 
-- (void)dataTaskWithURL:(NSURL *)url method:(NSString *)method andCompletionHandler:(APICompletionBlock)completionHandler {
+- (void)dataTaskWithURL:(NSURL *)URL method:(NSString *)method andCompletionHandler:(CPAPICompletionBlock)completionHandler {
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     
-    [[self.sharedSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-      
-        if (!error) {
-            completionHandler(YES, response, data, nil);
-        } else {
-            completionHandler(NO, response, data, error);
+    [[self.sharedSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response,NSError * _Nullable error) {
+        
+        BOOL success = (error == nil);
+        if (success) {
+            CPCrimePatrolResponse *apiResponse = [[CPCrimePatrolResponse alloc] initWithJsonData:data success:success];
+            
+            if (completionHandler)
+            {
+                completionHandler (apiResponse, response, error);
+            }
+        }
+        else {
+            completionHandler(nil, nil, error);
         }
         
     }] resume];
