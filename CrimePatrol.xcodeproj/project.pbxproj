@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93163E441C7E26E700D6CF3E /* districts.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 93163E431C7E26E700D6CF3E /* districts.geojson */; };
 		931B01551C597C0F004E9000 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01541C597C0F004E9000 /* main.m */; };
 		931B01581C597C0F004E9000 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B01571C597C0F004E9000 /* AppDelegate.m */; };
 		931B015B1C597C0F004E9000 /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B015A1C597C0F004E9000 /* CPViewController.m */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		93163E431C7E26E700D6CF3E /* districts.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = districts.geojson; sourceTree = "<group>"; };
 		931B01501C597C0F004E9000 /* CrimePatrol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimePatrol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		931B01541C597C0F004E9000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		931B01561C597C0F004E9000 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		931B01531C597C0F004E9000 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93163E431C7E26E700D6CF3E /* districts.geojson */,
 				931B01611C597C0F004E9000 /* LaunchScreen.storyboard */,
 				931B01541C597C0F004E9000 /* main.m */,
 			);
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931B01631C597C0F004E9000 /* LaunchScreen.storyboard in Resources */,
+				93163E441C7E26E700D6CF3E /* districts.geojson in Resources */,
 				931B01601C597C0F004E9000 /* Assets.xcassets in Resources */,
 				931B015E1C597C0F004E9000 /* Main.storyboard in Resources */,
 			);
