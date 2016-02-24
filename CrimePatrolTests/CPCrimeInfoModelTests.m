@@ -19,7 +19,7 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
     _dictInfo = @{@"address": @"500 Block of SOUTH VAN NESS AV",
                   @"category": @"LARCENY/THEFT",
                   @"date": @"2012-04-13T00:00:00.000",
@@ -41,25 +41,37 @@
 
 - (void)tearDown {
     _dictInfo = nil;
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 - (void)testThatModelIsCorrect {
     
-    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:self.dictInfo];
-    XCTAssertEqualObjects(cpCrimeInfo.category, @"LARCENY/THEFT", @"Dictionary Parsing error");
+    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:self.dictInfo andNumberFormatter:nil];
+    XCTAssertEqualObjects(cpCrimeInfo.category, @"LARCENY/THEFT", @"Dictionary Parsing error for Crime Category");
+}
+
+- (void)testThatDistrictNameIsValid {
+    
+    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:self.dictInfo andNumberFormatter:nil];
+    XCTAssertEqualObjects(cpCrimeInfo.pddistrict, @"MISSION", @"Dictionary Parsing error for District Name");
 }
 
 - (void)testThatCoordinatesAreValid {
     
-    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:self.dictInfo];
+    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:self.dictInfo andNumberFormatter:nil];
     CLLocationCoordinate2D coordinate = cpCrimeInfo.location.coordinate;
     
     CLLocationCoordinate2D testCoordinate = {37.764358, -122.417477};
     
     XCTAssertEqual(coordinate.latitude, testCoordinate.latitude, @"Latitude Coordinates Parsing error");
     XCTAssertEqual(coordinate.longitude, testCoordinate.longitude, @"Longitude Coordinates Parsing error");
+}
+
+- (void)testThatModelIsNil {
+    
+    CPCrimeInfo *cpCrimeInfo = [[CPCrimeInfo alloc] initWithDictionary:nil andNumberFormatter:nil];
+    
+    XCTAssertNil(cpCrimeInfo, @"Crime Info object should be nil");
 }
 
 @end
