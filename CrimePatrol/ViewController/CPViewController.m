@@ -13,6 +13,7 @@
 #import "CPCrimeInfo.h"
 #import "CPDistrict.h"
 #import "UIColor+CPColorUtils.h"
+#import "CPAlertManager.h"
 
 static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.740996, -122.440100};
 static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
@@ -103,6 +104,11 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
     }
     
     return annotationView;
+}
+
+- (void)showError:(NSError *)error {
+    
+    [self.alertManager alertWithTitle:@"Error" message:error.localizedDescription onViewController:self withAutoDismiss:NO];
 }
 
 #pragma mark - Delegate Helper

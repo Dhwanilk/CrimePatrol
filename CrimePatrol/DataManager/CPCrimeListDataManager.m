@@ -37,12 +37,21 @@
             [self parseJSON:jsonArray];
             [self refreshData];
         } else {
-            NSLog(@"Error: %@", [error localizedDescription]);
+            [self handleError:error];
         }
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
         
     }];
+}
+
+- (void)handleError:(NSError *)error {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if([self.delegate respondsToSelector:@selector(showError:)]) {
+            [self.delegate showError:error];
+        }
+    });
 }
 
 - (void)refreshData {

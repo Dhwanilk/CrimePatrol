@@ -7,8 +7,11 @@
 //
 
 @import UIKit;
+@class CPAlertManager;
 
 @interface CPViewController : UIViewController
+
+@property (nonatomic, strong) CPAlertManager *alertManager;
 
 @end
 

@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "CPAlertManager.h"
+#import "CPViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) CPAlertManager *alertManager;
 
 @end
 
@@ -17,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    CPViewController *cpViewController = (CPViewController *)self.window.rootViewController;
+    cpViewController.alertManager = self.alertManager;
+    
     return YES;
 }
 
@@ -41,5 +48,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (CPAlertManager *)alertManager {
+    if (!_alertManager) {
+        _alertManager = [[CPAlertManager alloc] init];
+    }
+    
+    return  _alertManager;
+}
+
 
 @end

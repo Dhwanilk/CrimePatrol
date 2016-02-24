@@ -10,6 +10,16 @@
 
 @protocol CPDataManagerDelegate <NSObject>
 
--(void)refreshView;
+/*!
+ * @discussion Delegate method to refresh view after successful data download
+ */
+- (void)refreshView;
+
+/*!
+ * @discussion Delegate method for displaying error
+ * @param error A NSError object for Handler to implement
+ */
+- (void)showError:(NSError *)error;
+
 
 @end
