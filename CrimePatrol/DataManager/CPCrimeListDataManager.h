@@ -20,7 +20,7 @@
 @property (nonatomic, assign) NSInteger lastFetchedIndex;
 
 //Load Data for date range
-- (void)loadDataForLastMonth;
+- (void)loadData;
 
 - (NSInteger)numberOfItems;
 - (void)refreshData;
@@ -30,8 +30,7 @@
 
 - (NSArray *)getCrimeLocationArray;
 
-- (void)loadDataForMapRect:(MKMapRect)rect;
-
+- (NSArray *)getDistricts;
 
 //Clear the data and reset offset & lastFetchedIndex;
 - (void)reset;

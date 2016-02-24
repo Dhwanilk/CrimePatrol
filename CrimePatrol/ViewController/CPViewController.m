@@ -31,7 +31,7 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self.crimeListDataManager loadDataForLastMonth];
+    [self.crimeListDataManager loadData];
     self.mapView.delegate = self;
 
     [self showDefaultLocation];
@@ -52,7 +52,7 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 
 - (IBAction)loadMore:(id)sender {
     
-    [self.crimeListDataManager loadDataForLastMonth];
+    [self.crimeListDataManager loadData];
 }
 
 - (IBAction)clearMap:(id)sender {

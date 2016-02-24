@@ -9,6 +9,7 @@
 #import "CPCrimeListDataManager.h"
 #import "CPCrimeInfo.h"
 #import "UIColor+CPColorUtils.h"
+#import "CPDistrict.h"
 
 static NSString* const kBaseURLString = @"https://data.sfgov.org/resource/cuks-n6tp.json?";
 
@@ -33,6 +34,8 @@ static NSInteger const kLimitCount = 20;
 
 @property (nonatomic, strong) NSArray *arrDistrictsSortedByCrimeCount;
 
+@property (nonatomic, strong) NSMutableArray *arrDistricts;
+
 @end
 
 @implementation CPCrimeListDataManager
@@ -53,7 +56,7 @@ static NSInteger const kLimitCount = 20;
     return  self;
 }
 
-- (void)loadDataForLastMonth {
+- (void)loadData {
     
     //Sample URL
     //https://data.sfgov.org/resource/cuks-n6tp.json?$$app_token=b4KsWInZBzXo1X7m69nPOBDX3&$where=date between '2015-12-27T12:00:00' and '2016-01-27T14:00:00'&$offset=0&$limit=20
@@ -104,6 +107,11 @@ static NSInteger const kLimitCount = 20;
     return [self.arrayCrimeData copy];
 }
 
+- (NSArray *)getDistricts {
+    
+    return [self.arrDistricts copy];
+}
+
 - (void)reset {
     [self.arrayCrimeData removeAllObjects];
     [self.dictDistrict removeAllObjects];
@@ -129,6 +137,33 @@ static NSInteger const kLimitCount = 20;
     }
     return  _dictDistrict;
 }
+
+- (NSMutableArray *)arrDistricts {
+    
+    if (!_arrDistricts) {
+        
+        _arrDistricts = [NSMutableArray new];
+        
+        NSString *filepath = [[NSBundle mainBundle] pathForResource:@"districts" ofType:@"geojson"];
+        
+        if (filepath) {
+            NSData* data = [NSData dataWithContentsOfFile:filepath];
+            NSError *error;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if (!error)
+            {
+                NSArray *featureArray = jsonDict[@"features"];
+                for (NSDictionary *dict in featureArray) {
+                    CPDistrict *district = [[CPDistrict alloc] initWithDictionary:dict];
+                    [_arrDistricts addObject:district];
+                }
+            }
+        }
+    }
+    
+    return _arrDistricts;
+}
+
 
 #pragma mark - Private Methods
 
@@ -174,27 +209,6 @@ static NSInteger const kLimitCount = 20;
     
     return [NSString stringWithFormat:@"%@&%@", [self getBaseURLWithAppToken], dateRange];
     
-}
-
-- (NSString *)getURLForBoundingBox:(NSArray *)box {
-
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    
-    NSCalendar *gregorian = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-    [offsetComponents setMonth:-1];
-    NSDate *oneMonthLess = [gregorian dateByAddingComponents:offsetComponents toDate:today options:0];
-    
-    NSLog(@"%@", [dateFormatter stringFromDate:today]);
-    NSLog(@"%@", [dateFormatter stringFromDate:oneMonthLess]);
-    
-//(date between \'2015-12-27T12:00:00\' and \'2016-01-27T14:00:00\') AND (within_box( location, 37.76223, -122.4357, 37.8086, -122.39432))
-    NSString *dateRange = [NSString stringWithFormat:@"%@=(date between \'%@\' and \'%@\') AND (within_box(location, %@, %@, %@, %@))",
-                           kWhere, [dateFormatter stringFromDate:oneMonthLess], [dateFormatter stringFromDate:today], box[0], box[1], box[2], box[3]];
-    
-    return [NSString stringWithFormat:@"%@&%@", [self getBaseURLWithAppToken], dateRange];
 }
 
 //Generate count dictionary for crime data based on districts
