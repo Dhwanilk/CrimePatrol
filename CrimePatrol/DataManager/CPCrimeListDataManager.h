@@ -7,10 +7,9 @@
 //
 
 @import UIKit;
-#import <Foundation/Foundation.h>
-#import "CPDataManagerDelegate.h"
+@import Foundation;
 @import MapKit;
-
+#import "CPDataManagerDelegate.h"
 
 @interface CPCrimeListDataManager : NSObject
 
@@ -22,15 +21,15 @@
 //Load Data for date range
 - (void)loadData;
 
-- (NSInteger)numberOfItems;
 - (void)refreshData;
-- (BOOL)shouldFetchMoreForIndex:(NSInteger)index;
 
 - (UIColor *)getPinColorForDistrict:(NSString *)district;
 
 - (NSArray *)getCrimeLocationArray;
 
 - (NSArray *)getDistricts;
+
+- (NSUInteger)numberOfIncidentsInDistrict:(NSString *)district;
 
 //Clear the data and reset offset & lastFetchedIndex;
 - (void)reset;

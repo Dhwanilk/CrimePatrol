@@ -6,8 +6,8 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+@import Foundation;
+@import MapKit;
 
 @interface CPAnnotationView : NSObject <MKAnnotation>
 
@@ -16,6 +16,6 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *district;
 
--(instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSString *)subTitle andDistrict:(NSString *)district;
+-(instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSInteger)subTitle andDistrict:(NSString *)district;
 
 @end

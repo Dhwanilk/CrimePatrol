@@ -10,25 +10,10 @@
 #import "CPCrimeInfo.h"
 #import "UIColor+CPColorUtils.h"
 #import "CPDistrict.h"
-
-static NSString* const kBaseURLString = @"https://data.sfgov.org/resource/cuks-n6tp.json?";
-
-static NSString* const kAppTokenKey = @"$$app_token";
-static NSString* const kAppTokenValue = @"b4KsWInZBzXo1X7m69nPOBDX3";
-
-static NSString* const kWhere = @"$where";
-
-//TODO: Add configuration options for date selection as per month
-static NSString* const kDateRange = @"date between \'2015-12-27T12:00:00\' and \'2016-01-27T14:00:00\'";
-
-static NSString* const kOffset = @"$offset";
-static NSString* const kLimit = @"$limit";
-
-static NSInteger const kLimitCount = 20;
+#import "CPNetworkingManager.h"
 
 @interface CPCrimeListDataManager()
 
-@property (nonatomic, strong) NSURLSession *sharedSession;
 @property (nonatomic, strong) NSMutableArray *arrayCrimeData;
 @property (nonatomic, strong) NSMutableDictionary *dictDistrict;
 
@@ -42,51 +27,22 @@ static NSInteger const kLimitCount = 20;
 
 #pragma mark - Public Interface
 
-- (instancetype)init {
-    
-    self = [super init];
-    if (self) {
-        _offset = 0;
-        _lastFetchedIndex = 0;
-        
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _sharedSession = [NSURLSession sessionWithConfiguration:configuration];
-    }
-    
-    return  self;
-}
-
 - (void)loadData {
     
-    //Sample URL
-    //https://data.sfgov.org/resource/cuks-n6tp.json?$$app_token=b4KsWInZBzXo1X7m69nPOBDX3&$where=date between '2015-12-27T12:00:00' and '2016-01-27T14:00:00'&$offset=0&$limit=20
-    
-    NSString *baseURL = [self getBaseURLPathStringWithDateComponent];
-    NSString *dateOffsetURLString = [baseURL stringByAppendingFormat:@"&%@=%ld&%@=%ld", kOffset, self.offset, kLimit, kLimitCount];
-    
-    //Escape string for quotes in date range
-    NSString *escapedTitle = [dateOffsetURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
-    NSURLSessionDataTask *dataTask = [self.sharedSession dataTaskWithURL:[NSURL URLWithString:escapedTitle]
-                                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                           
-                                                           if (!error) {
-                                                               
-                                                               NSLog(@"Loading Data from %ld to %ld", self.offset, self.offset + kLimitCount);
-                                                               self.offset += kLimitCount;
-                                                               NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                               [self parseJSON:jsonArray];
-                                                               
-                                                           } else {
-                                                               NSLog(@"Error: %@", [error localizedDescription]);
-                                                           }
+    [[CPNetworkingManager sharedManager] getCrimesForPastMonthWithCompletionHandler:^(BOOL success, NSURLResponse *response, NSData *data, NSError *error) {
+       
+        if (success) {
+            
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            [self parseJSON:jsonArray];
+            [self refreshData];
+        } else {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        }
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
+        
     }];
-    
-    [dataTask resume];
-}
-
-- (NSInteger)numberOfItems {
-    return 0;
 }
 
 - (void)refreshData {
@@ -96,11 +52,6 @@ static NSInteger const kLimitCount = 20;
             [self.delegate refreshView];
         }
     });
-}
-
-
-- (BOOL)shouldFetchMoreForIndex:(NSInteger)index {
-    return false;
 }
 
 - (NSArray *)getCrimeLocationArray {
@@ -115,11 +66,17 @@ static NSInteger const kLimitCount = 20;
 - (void)reset {
     [self.arrayCrimeData removeAllObjects];
     [self.dictDistrict removeAllObjects];
-    self.offset = 0;
-    self.lastFetchedIndex = 0;
-    
 }
 
+- (NSUInteger)numberOfIncidentsInDistrict:(NSString *)district {
+    
+    if (self.dictDistrict[district]) {
+        NSArray *individualDistrictArray = self.dictDistrict[district];
+        return [individualDistrictArray count];
+    } else {
+        return  0;
+    }
+}
 
 #pragma mark - Lazy Instantiation
 
@@ -176,40 +133,9 @@ static NSInteger const kLimitCount = 20;
         [self.arrayCrimeData addObject:crimeInfo];
     }
     
-    NSLog(@"Items:%ld", [self.arrayCrimeData count]);
-    
     [self generateDistrictDictionary];
-    
-    //Call Delegate
-    [self refreshData];
 }
 
-- (NSString *)getBaseURLWithAppToken {
-    
-    return [NSString stringWithFormat:@"%@%@=%@", kBaseURLString, kAppTokenKey, kAppTokenValue];
-}
-
-- (NSString *)getBaseURLPathStringWithDateComponent {
-    
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    
-    NSCalendar *gregorian = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-    [offsetComponents setMonth:-1];
-    NSDate *oneMonthLess = [gregorian dateByAddingComponents:offsetComponents toDate:today options:0];
-    
-    NSLog(@"%@", [dateFormatter stringFromDate:today]);
-    NSLog(@"%@", [dateFormatter stringFromDate:oneMonthLess]);
-    
-//    date between \'2015-12-27T12:00:00\' and \'2016-01-27T14:00:00\'
-    NSString *dateRange = [NSString stringWithFormat:@"%@=date between \'%@\' and \'%@\'",
-                           kWhere, [dateFormatter stringFromDate:oneMonthLess], [dateFormatter stringFromDate:today]];
-    
-    return [NSString stringWithFormat:@"%@&%@", [self getBaseURLWithAppToken], dateRange];
-    
-}
 
 //Generate count dictionary for crime data based on districts
 - (void)generateDistrictDictionary {
@@ -247,7 +173,6 @@ static NSInteger const kLimitCount = 20;
 - (UIColor *)getPinColorForDistrict:(NSString *)district {
     
     NSInteger index = [self.arrDistrictsSortedByCrimeCount indexOfObject:district];
-    NSLog(@"%@: %ld", district, index);
     if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] == NSOrderedAscending) {
      
         switch (index) {

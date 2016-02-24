@@ -39,9 +39,9 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="iw9-Kw-6eE"/>
-                                    <barButtonItem title="Load More" id="lXW-Wr-PlX">
+                                    <barButtonItem systemItem="refresh" id="lXW-Wr-PlX">
                                         <connections>
-                                            <action selector="loadMore:" destination="BYZ-38-t0r" id="39f-NS-p0k"/>
+                                            <action selector="reloadView:" destination="BYZ-38-t0r" id="yex-Qu-wjn"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

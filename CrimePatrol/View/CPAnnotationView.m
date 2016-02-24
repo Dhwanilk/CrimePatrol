@@ -10,14 +10,14 @@
 
 @implementation CPAnnotationView
 
--(instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSString *)subTitle andDistrict:(NSString *)district
+-(instancetype)initWithTitle:(NSString *)title coordinate:(CLLocationCoordinate2D)coordinate subTitle:(NSInteger)subTitle andDistrict:(NSString *)district
 {
     self = [super init];
     
     if (self) {
         _title = title;
         _coordinate = coordinate;
-        _subtitle = subTitle;
+        _subtitle = [NSString stringWithFormat:@"%ld", (long)subTitle];
         _district = district;
     }
     

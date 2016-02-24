@@ -6,10 +6,9 @@
 //  Copyright © 2016 Dhwanil Karwa. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface CPViewController : UIViewController
-
 
 @end
 

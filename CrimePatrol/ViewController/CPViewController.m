@@ -8,9 +8,10 @@
 
 #import "CPViewController.h"
 #import "CPCrimeListDataManager.h"
-#import <MapKit/MapKit.h>
+@import MapKit;
 #import "CPAnnotationView.h"
 #import "CPCrimeInfo.h"
+#import "CPDistrict.h"
 
 static const CLLocationCoordinate2D kSFOCenterCoordinate = {37.740996, -122.440100};
 static const MKCoordinateSpan kSFOSpan = {0.2, 0.2};
@@ -34,10 +35,11 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
     [self.crimeListDataManager loadData];
     self.mapView.delegate = self;
 
-    [self showDefaultLocation];
+    [self centerMapOnDefaultLocation];
 }
 
-- (void)showDefaultLocation {
+///Center the map on San Francisco Region
+- (void)centerMapOnDefaultLocation {
     
     MKCoordinateRegion sfoRegion;
     
@@ -50,8 +52,10 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 
 #pragma mark - IBActions
 
-- (IBAction)loadMore:(id)sender {
+- (IBAction)reloadView:(id)sender {
     
+    [self clearMap:nil];
+    [self centerMapOnDefaultLocation];
     [self.crimeListDataManager loadData];
 }
 
@@ -90,6 +94,8 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
             
             pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];;
             
+        } else {
+            pinView.pinTintColor = [self.crimeListDataManager getPinColorForDistrict:annotation.district];
         }
         
         return pinView;
@@ -104,12 +110,12 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (CPCrimeInfo *crimeInfo in [self.crimeListDataManager getCrimeLocationArray]) {
+    for (CPDistrict *district in [self.crimeListDataManager getDistricts]) {
         
-        CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:crimeInfo.category
-                                                                    coordinate:crimeInfo.location.coordinate
-                                                                      subTitle:crimeInfo.crimeDescription
-                                                                   andDistrict:crimeInfo.pddistrict];
+        CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:district.name
+                                                                    coordinate:district.location.coordinate
+                                                                      subTitle:[self.crimeListDataManager numberOfIncidentsInDistrict:[district district]]
+                                                                   andDistrict:district.district];
         [annotations addObject:annotation];
     }
     
