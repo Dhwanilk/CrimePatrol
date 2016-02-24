@@ -141,6 +141,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		93163E631C7E32CF00D6CF3E /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
 		931B01471C597C0F004E9000 = {
 			isa = PBXGroup;
 			children = (
@@ -165,11 +172,12 @@
 			children = (
 				931B01561C597C0F004E9000 /* AppDelegate.h */,
 				931B01571C597C0F004E9000 /* AppDelegate.m */,
-				93163E451C7E283500D6CF3E /* DataManager */,
 				93163E491C7E283500D6CF3E /* Models */,
-				93163E4E1C7E283500D6CF3E /* Utils */,
-				93163E511C7E283500D6CF3E /* View */,
 				93163E541C7E283500D6CF3E /* ViewController */,
+				93163E511C7E283500D6CF3E /* View */,
+				93163E4E1C7E283500D6CF3E /* Utils */,
+				93163E451C7E283500D6CF3E /* DataManager */,
+				93163E631C7E32CF00D6CF3E /* NetworkManager */,
 				931B015C1C597C0F004E9000 /* Main.storyboard */,
 				931B015F1C597C0F004E9000 /* Assets.xcassets */,
 				931B01641C597C0F004E9000 /* Info.plist */,
