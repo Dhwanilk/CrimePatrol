@@ -22,7 +22,7 @@
 
 + (UIColor *)pinColorForIndex:(NSInteger)index {
     
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] == NSOrderedAscending) {
+    if ([[UIDevice currentDevice].systemVersion compare:@"9.0" options:NSNumericSearch] == NSOrderedAscending) {
         
         switch (index) {
             case CPCrimeLevel9:

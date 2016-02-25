@@ -119,12 +119,12 @@ static NSString* const kAnnotationIdentifier = @"CustomPinAnnotationView";
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (CPDistrict *district in [self.crimeListDataManager districts]) {
+    for (CPDistrict *geoJSONDistrict in (self.crimeListDataManager).districts) {
         
-        CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:district.name
-                                                                    coordinate:district.location.coordinate
-                                                                      subTitle:[self.crimeListDataManager numberOfIncidentsInDistrict:[district district]]
-                                                                   andDistrict:district.district];
+        CPAnnotationView *annotation = [[CPAnnotationView alloc] initWithTitle:geoJSONDistrict.name
+                                                                    coordinate:geoJSONDistrict.location.coordinate
+                                                                      subTitle:[self.crimeListDataManager numberOfIncidentsInDistrict:geoJSONDistrict.district]
+                                                                   andDistrict:geoJSONDistrict.district];
         [annotations addObject:annotation];
     }
     
